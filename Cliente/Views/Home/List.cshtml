@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Cliente.Models.Clientes>
+
+@{
+    ViewData["Title"] = "YOGA CLIENTES";
+}
+
+<h2>List</h2>
+
+<p>
+    <a asp-action="Create">Crear Nuevo Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tiempo_Curso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tiempo_Curso)
+            </td>
+            <td>
+                <strong>
+                    @Html.ActionLink("Editar", "Update", new { id = item.id })|
+
+                    @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                    <form asp-action="Details" method="post" asp-route-id="@item.id">
+                        <button>Detalles</button>
+                    </form>
+
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                    <form asp-action="Delete" method="post" asp-route-id="@item.id">
+                        <button>Eliminar</button>
+                    </form>
+                </strong>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
